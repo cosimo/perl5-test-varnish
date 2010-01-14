@@ -6,6 +6,5 @@ MANIFEST
 README
 t/00-load.t
 t/analyze-response.t
-t/boilerplate.t
 t/pod-coverage.t
 t/pod.t
