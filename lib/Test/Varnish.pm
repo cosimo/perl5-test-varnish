@@ -1,6 +1,6 @@
 package Test::Varnish;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use warnings;
 use strict;
@@ -216,18 +216,20 @@ __END__
 
 =head1 NAME
 
-Test::Varnish - The great new Test::Varnish!
+Test::Varnish - Put your Varnish server to the test!
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 
 Varnish is a high performance reverse proxy.
+
 This module allows you to perform tests against a varnish server,
 asserting that a given resource (URL) is cached by varnish or not.
 
+See it as a sort of C<Test::More> extension to test Varnish.
 This can be useful when you want to test that your varnish setup
 and configuration works as expected.
 
@@ -255,11 +257,6 @@ discover who is using Varnish.
         },
         'Is CNN.com using Varnish?'
     );
-
-=head1 EXPORT
-
-A list of functions that can be exported.  You can delete this section
-if you don't export anything, such as for a purely object-oriented module.
 
 =head1 FUNCTIONS
 

@@ -1,5 +1,9 @@
 Revision history for Test-Varnish
 
-0.01    Date/time
+0.02    2010/01/14 22:00
+        Completed documentation, and fixed a test script glitch that
+		caused test failure reports on Windows.
+
+0.01    2010/01/13 21:00
         First version, released on an unsuspecting world.
 

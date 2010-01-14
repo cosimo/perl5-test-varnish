@@ -1,16 +1,16 @@
 Test-Varnish
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+Varnish is a high performance reverse proxy.
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+Test::Varnish allows you to perform tests against a varnish server,
+asserting that a given resource (URL) is cached by varnish or not.
 
+See it as a sort of Test::More extension to test Varnish.
+This can be useful when you want to test that your varnish setup
+and configuration works as expected.
+
+Another use for this module would be to poll random webservers to
+discover who is using Varnish.
 
 INSTALLATION
 
