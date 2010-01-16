@@ -1,6 +1,6 @@
 package Test::Varnish;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use warnings;
 use strict;
@@ -38,7 +38,7 @@ sub analyze_response {
 
     # "X-Varnish: 2131920313 1299858343" means cached
     # "X-Varnish: 2039442137" means not cached
-    if (defined $main_header && $main_header =~ m{^ \s* \S+ \s+ \S+ \s* $}mx) {
+    if (defined $main_header && $main_header =~ m{^ \s* \d+ \s+ \d+ \s* $}mx) {
         $cached = 1;
     }
 
@@ -173,8 +173,10 @@ sub request {
 
 sub _response_sets_cookies {
     my ($res) = @_;
+
     my $cookie_header = $res->header("Set-Cookie");
     #diag("cookie_header: " . ($cookie_header || ""));
+
     return defined $cookie_header && $cookie_header ne q{}
         ? 1
         : 0;
@@ -220,7 +222,7 @@ Test::Varnish - Put your Varnish server to the test!
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 

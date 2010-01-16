@@ -6,9 +6,9 @@ use HTTP::Headers;
 use HTTP::Response;
 use Test::More;
 
-use_ok('Test::Varnish');
+plan tests => 6;
 
-plan tests => 4;
+use_ok('Test::Varnish');
 
 my $tv = Test::Varnish->new();
 
@@ -25,7 +25,7 @@ is(
 
 # Header with two IDs means response was cached
 $head = HTTP::Headers->new();
-$head->push_header('X-Varnish', '123456780 123456789');
+$head->push_header('X-Varnish', '123456789 123456780');
 
 $resp = HTTP::Response->new(200, 'OK', $head, '<html/>');
 $is_cached = $tv->analyze_response($resp);
@@ -46,4 +46,28 @@ is(
 	$is_cached => 0,
 	'No varnish header. Can\'t be cached.',
 );
+
+# Undef or empty header also means no Varnish
+$head = HTTP::Headers->new();
+$head->push_header('X-Varnish' => '     ');
+
+$resp = HTTP::Response->new(200, 'OK', $head, '<html/>');
+$is_cached = $tv->analyze_response($resp);
+
+is(
+	$is_cached => 0,
+	'Invalid Varnish header. Should not be detected as cached.',
+);
+
+$head = HTTP::Headers->new();
+$head->push_header('X-Varnish' => '  abc  abc  ');
+
+$resp = HTTP::Response->new(200, 'OK', $head, '<html/>');
+$is_cached = $tv->analyze_response($resp);
+
+is(
+	$is_cached => 0,
+	'Invalid Varnish header. Should not be detected as cached.',
+);
+
 
